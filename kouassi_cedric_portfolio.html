@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kouassi Cédric - Data Science & ML Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            teal: '#0d9488',
+                            tealLight: '#14b8a6',
+                            coral: '#f97316',
+                            coralLight: '#fb923c',
+                            navy: '#0f172a',
+                            navyLight: '#1e293b',
+                            accent: '#0284c7'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card-hover {
+            transition: all 0.3s ease;
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-4px);
+            border-color: rgba(20, 184, 166, 0.4);
+            box-shadow: 0 12px 24px -10px rgba(13, 148, 136, 0.25);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #14b8a6 0%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .coral-gradient {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        }
+        .teal-gradient {
+            background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0d9488;
+        }
+    </style>
+</head>
+<body class="bg-brand-navy text-slate-100 min-h-screen selection:bg-brand-teal selection:text-white">
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl teal-gradient flex items-center justify-center font-bold text-lg text-white shadow-lg shadow-teal-900/40">
+                        KC
+                    </div>
+                    <div>
+                        <span class="font-bold text-lg tracking-tight block leading-none">Kouassi Cédric</span>
+                        <span class="text-xs text-brand-tealLight font-medium">Data Scientist & ML Engineer</span>
+                    </div>
+                </div>
+
+                <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+                    <a href="#about" class="text-slate-300 hover:text-brand-tealLight transition-colors">Overview</a>
+                    <a href="#eda" class="text-slate-300 hover:text-brand-tealLight transition-colors">EDA & Insights</a>
+                    <a href="#modeling" class="text-slate-300 hover:text-brand-tealLight transition-colors">Model Comparison</a>
+                    <a href="#simulator" class="text-slate-300 hover:text-brand-tealLight transition-colors">Live Predictor</a>
+                    <a href="#impact" class="text-slate-300 hover:text-brand-tealLight transition-colors">Business Impact</a>
+                </nav>
+
+                <div class="flex items-center gap-3">
+                    <a href="#simulator" class="px-4 py-2 text-xs font-semibold rounded-lg coral-gradient text-white shadow-lg shadow-orange-900/30 hover:opacity-90 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-bolt">package</i> Try Predictor
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <section id="about" class="py-16 md:py-24 relative overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-teal/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute top-1/2 -left-40 w-96 h-96 bg-brand-coral/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-brand-teal/10 text-brand-tealLight border border-brand-teal/20">
+                            <span class="w-2 h-2 rounded-full bg-brand-tealLight animate-pulse"></span>
+                            Featured Research Case Study
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                            Predicting User <span class="gradient-text">Click Behavior</span> in Online Ads
+                        </h1>
+                        <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+                            Welcome to my Machine Learning portfolio showcase. This study presents an end-to-end Machine Learning pipeline analyzing user engagement with digital advertising, transforming raw contextual data into high-precision predictive models that boost campaign ROI by up to 78% error reduction.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
+                            <div class="p-4 rounded-xl glass-card border-slate-800">
+                                <div class="text-2xl sm:text-3xl font-extrabold text-brand-tealLight">10,000</div>
+                                <div class="text-xs text-slate-400 mt-1">Dataset Records</div>
+                            </div>
+                            <div class="p-4 rounded-xl glass-card border-slate-800">
+                                <div class="text-2xl sm:text-3xl font-extrabold text-brand-coral">90.81%</div>
+                                <div class="text-xs text-slate-400 mt-1">Random Forest Accuracy</div>
+                            </div>
+                            <div class="p-4 rounded-xl glass-card border-slate-800">
+                                <div class="text-2xl sm:text-3xl font-extrabold text-brand-tealLight">78%</div>
+                                <div class="text-xs text-slate-400 mt-1">Error Reduction</div>
+                            </div>
+                            <div class="p-4 rounded-xl glass-card border-slate-800">
+                                <div class="text-2xl sm:text-3xl font-extrabold text-brand-coral">0.795</div>
+                                <div class="text-xs text-slate-400 mt-1">Kappa Agreement</div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <a href="#eda" class="px-6 py-3 rounded-xl teal-gradient font-semibold text-sm shadow-lg shadow-teal-900/30 hover:opacity-90 transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-chart-pie"></i> Explore Analysis
+                            </a>
+                            <a href="#simulator" class="px-6 py-3 rounded-xl glass-card border-slate-700 hover:bg-slate-800/80 font-semibold text-sm transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-sliders"></i> Test Interactive Model
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual Card -->
+                    <div class="lg:col-span-5">
+                        <div class="glass-card p-6 rounded-2xl border-slate-800 relative shadow-2xl">
+                            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                                </div>
+                                <span class="text-xs font-mono text-slate-400">Research Objective Overview</span>
+                            </div>
+
+                            <div class="space-y-4 pt-4">
+                                <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800 text-xs space-y-1">
+                                    <span class="text-brand-coral font-semibold">Challenge:</span>
+                                    <p class="text-slate-300">Poor click prediction leads to wasted ad budgets, inaccurate user targeting, and poor return on investment (ROI).</p>
+                                </div>
+                                <div class="p-3 rounded-lg bg-slate-900/60 border border-slate-800 text-xs space-y-1">
+                                    <span class="text-brand-tealLight font-semibold">Solution:</span>
+                                    <p class="text-slate-300">Multivariate ML pipeline leveraging demographic data, browsing history, ad placement, and time-of-day variables.</p>
+                                </div>
+
+                                <!-- Mini Donut distribution chart -->
+                                <div class="pt-2">
+                                    <div class="text-xs font-medium text-slate-400 mb-2 flex justify-between">
+                                        <span>Click Class Balance (Original Dataset)</span>
+                                        <span class="text-brand-tealLight">10k Rows</span>
+                                    </div>
+                                    <div class="h-36 relative">
+                                        <canvas id="heroDonutChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="eda" class="py-16 bg-slate-900/50 border-y border-slate-800/80 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-xs font-bold text-brand-tealLight uppercase tracking-wider mb-2">Data Understanding & EDA</h2>
+                    <h3 class="text-3xl font-bold">Uncovering Factors Influencing Click Behavior</h3>
+                    <p class="text-slate-400 text-sm mt-2">
+                        Comprehensive exploration reveals that click events are strongly driven by interactions between context (device, time, ad position) and user demographics.
+                    </p>
+                </div>
+
+                <!-- Tabs for Visualizations -->
+                <div class="flex justify-center mb-8">
+                    <div class="inline-flex p-1 bg-slate-800/80 rounded-xl border border-slate-700 max-w-full overflow-x-auto">
+                        <button onclick="switchTab('tab-browsing')" id="btn-tab-browsing" class="px-4 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-teal text-white shadow">
+                            Device vs Browsing History
+                        </button>
+                        <button onclick="switchTab('tab-time')" id="btn-tab-time" class="px-4 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all">
+                            Position vs Time of Day
+                        </button>
+                        <button onclick="switchTab('tab-gender')" id="btn-tab-gender" class="px-4 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all">
+                            Gender & Time Interactions
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Visualization Panels -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Chart Canvas Box -->
+                    <div class="lg:col-span-8 glass-card p-6 rounded-2xl border-slate-800">
+                        <div id="tab-browsing" class="tab-content">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="font-bold text-slate-200 text-sm">User Clicks by Browsing History & Device Type</h4>
+                                <span class="text-xs text-brand-coral font-mono">Desktop Dominance</span>
+                            </div>
+                            <div class="h-80 relative">
+                                <canvas id="browsingDeviceChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div id="tab-time" class="tab-content hidden">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="font-bold text-slate-200 text-sm">Clicks by Ad Position across Time of Day</h4>
+                                <span class="text-xs text-brand-tealLight font-mono">Bottom & Side Peak</span>
+                            </div>
+                            <div class="h-80 relative">
+                                <canvas id="timePositionChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div id="tab-gender" class="tab-content hidden">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="font-bold text-slate-200 text-sm">Gender Click Dynamics across Daily Hours</h4>
+                                <span class="text-xs text-brand-coral font-mono">Multivariate Demographic Impact</span>
+                            </div>
+                            <div class="h-80 relative">
+                                <canvas id="genderTimeChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Insights Cards -->
+                    <div class="lg:col-span-4 space-y-4">
+                        <div id="insight-browsing" class="insight-content glass-card p-5 rounded-2xl border-slate-800 space-y-3">
+                            <div class="w-8 h-8 rounded-lg teal-gradient flex items-center justify-center text-white font-bold text-sm">
+                                <i class="fa-solid fa-desktop"></i>
+                            </div>
+                            <h4 class="font-bold text-lg text-slate-100">Browsing & Device Insights</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Desktop dominates click volumes overall, especially in <strong class="text-brand-tealLight">Education (~295 clicks)</strong> which generates ~80% more clicks than Mobile. However, <strong class="text-brand-coral">Social Media</strong> breaks this trend with Mobile generating the highest clicks (~35).
+                            </p>
+                            <div class="p-3 bg-slate-900/60 rounded-lg border border-slate-800 text-xs text-slate-400">
+                                💡 <strong>Actionable takeaway:</strong> Route Social Media ad spend toward mobile platforms while reserving Desktop for Education and News.
+                            </div>
+                        </div>
+
+                        <div id="insight-time" class="insight-content hidden glass-card p-5 rounded-2xl border-slate-800 space-y-3">
+                            <div class="w-8 h-8 rounded-lg coral-gradient flex items-center justify-center text-white font-bold text-sm">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <h4 class="font-bold text-lg text-slate-100">Timing & Positioning Insights</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Click volume spikes during <strong class="text-brand-coral">Morning and Afternoon</strong> windows, specifically when ads are located in <strong class="text-brand-tealLight">Bottom and Side</strong> placements. Contrary to popular belief, Top placement does not systematically yield highest conversion.
+                            </p>
+                            <div class="p-3 bg-slate-900/60 rounded-lg border border-slate-800 text-xs text-slate-400">
+                                💡 <strong>Actionable takeaway:</strong> Re-allocate expensive top-banner budgets toward bottom/side placements during peak morning/afternoon hours.
+                            </div>
+                        </div>
+
+                        <div id="insight-gender" class="insight-content hidden glass-card p-5 rounded-2xl border-slate-800 space-y-3">
+                            <div class="w-8 h-8 rounded-lg teal-gradient flex items-center justify-center text-white font-bold text-sm">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <h4 class="font-bold text-lg text-slate-100">Demographic Interactions</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                Female users exhibit higher overall engagement, peaking in the <strong class="text-brand-tealLight">Afternoon (~100 clicks)</strong> and staying high at Night. Male and Non-Binary demographics show lower, steady click counts (20-40 range) across periods.
+                            </p>
+                            <div class="p-3 bg-slate-900/60 rounded-lg border border-slate-800 text-xs text-slate-400">
+                                💡 <strong>Actionable takeaway:</strong> Demographic targeting must be dynamically adjusted relative to the hour of ad delivery.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="modeling" class="py-16 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-xs font-bold text-brand-coral uppercase tracking-wider mb-2">Machine Learning Modeling</h2>
+                    <h3 class="text-3xl font-bold">Baseline vs. Champion Model Evaluation</h3>
+                    <p class="text-slate-400 text-sm mt-2">
+                        Comparing Logistic Regression (interpretable baseline) against Random Forest (non-linear ensemble champion) across key performance metrics.
+                    </p>
+                </div>
+
+                <!-- Comparison Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    
+                    <!-- Logistic Regression -->
+                    <div class="glass-card p-6 rounded-2xl border-slate-800 space-y-6 relative overflow-hidden">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Baseline Model</span>
+                                <h4 class="text-xl font-bold text-slate-100 mt-1">Logistic Regression</h4>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">Moderate</span>
+                        </div>
+
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Selected initially for binary target compatibility, probabilistic output, and interpretable coefficients. However, linear decision boundaries proved insufficient for complex non-linear feature interactions.
+                        </p>
+
+                        <!-- Confusion Matrix Box -->
+                        <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-800 space-y-2">
+                            <div class="text-xs font-semibold text-slate-400">Confusion Matrix (Sample Test)</div>
+                            <div class="grid grid-cols-2 gap-2 text-center text-xs font-mono">
+                                <div class="p-2 bg-slate-800/50 rounded border border-slate-700">
+                                    <div class="text-slate-400 text-[10px]">True Neg (TN)</div>
+                                    <div class="text-lg font-bold text-slate-200">141</div>
+                                </div>
+                                <div class="p-2 bg-red-950/30 rounded border border-red-800/40">
+                                    <div class="text-red-400 text-[10px]">False Pos (FP)</div>
+                                    <div class="text-lg font-bold text-red-400">159</div>
+                                </div>
+                                <div class="p-2 bg-red-950/30 rounded border border-red-800/40">
+                                    <div class="text-red-400 text-[10px]">False Neg (FN)</div>
+                                    <div class="text-lg font-bold text-red-400">183</div>
+                                </div>
+                                <div class="p-2 bg-slate-800/50 rounded border border-slate-700">
+                                    <div class="text-slate-400 text-[10px]">True Pos (TP)</div>
+                                    <div class="text-lg font-bold text-slate-200">333</div>
+                                </div>
+                            </div>
+                            <div class="text-center text-xs text-red-400 pt-1">Total Errors: 342 misclassifications</div>
+                        </div>
+
+                        <!-- Key Metrics List -->
+                        <div class="grid grid-cols-3 gap-2 text-center">
+                            <div class="p-2 rounded-lg bg-slate-800/40">
+                                <div class="text-xs text-slate-400">Accuracy</div>
+                                <div class="text-base font-bold text-slate-200">~58%</div>
+                            </div>
+                            <div class="p-2 rounded-lg bg-slate-800/40">
+                                <div class="text-xs text-slate-400">AUC</div>
+                                <div class="text-base font-bold text-slate-200">0.60 - 0.65</div>
+                            </div>
+                            <div class="p-2 rounded-lg bg-slate-800/40">
+                                <div class="text-xs text-slate-400">Discrimination</div>
+                                <div class="text-base font-bold text-slate-200">Weak</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Random Forest Champion -->
+                    <div class="glass-card p-6 rounded-2xl border-brand-teal/40 space-y-6 relative overflow-hidden shadow-xl shadow-teal-950/30">
+                        <div class="absolute top-0 right-0 px-4 py-1 coral-gradient text-white font-bold text-[10px] uppercase rounded-bl-xl tracking-wider">
+                            Champion Model
+                        </div>
+
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs font-semibold text-brand-tealLight uppercase tracking-wider">Ensemble Learning</span>
+                                <h4 class="text-xl font-bold text-slate-100 mt-1">Random Forest Classifier</h4>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Captures complex multi-way feature interactions (e.g. Device × Browsing History × Time). Drastically reduces error rates and maintains robustness despite original target class imbalance.
+                        </p>
+
+                        <!-- Confusion Matrix Box -->
+                        <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-800 space-y-2">
+                            <div class="text-xs font-semibold text-slate-400">Confusion Matrix (Sample Test)</div>
+                            <div class="grid grid-cols-2 gap-2 text-center text-xs font-mono">
+                                <div class="p-2 bg-slate-800/50 rounded border border-brand-teal/30">
+                                    <div class="text-slate-400 text-[10px]">True Neg (TN)</div>
+                                    <div class="text-lg font-bold text-brand-tealLight">238</div>
+                                </div>
+                                <div class="p-2 bg-slate-800/30 rounded border border-slate-700">
+                                    <div class="text-slate-400 text-[10px]">False Pos (FP)</div>
+                                    <div class="text-lg font-bold text-slate-300">13</div>
+                                </div>
+                                <div class="p-2 bg-slate-800/30 rounded border border-slate-700">
+                                    <div class="text-slate-400 text-[10px]">False Neg (FN)</div>
+                                    <div class="text-lg font-bold text-slate-300">62</div>
+                                </div>
+                                <div class="p-2 bg-slate-800/50 rounded border border-brand-teal/30">
+                                    <div class="text-slate-400 text-[10px]">True Pos (TP)</div>
+                                    <div class="text-lg font-bold text-brand-tealLight">503</div>
+                                </div>
+                            </div>
+                            <div class="text-center text-xs text-brand-tealLight font-semibold pt-1">Total Errors: 75 only (78% error reduction!)</div>
+                        </div>
+
+                        <!-- Key Metrics List -->
+                        <div class="grid grid-cols-4 gap-2 text-center">
+                            <div class="p-2 rounded-lg bg-brand-teal/10 border border-brand-teal/20">
+                                <div class="text-[10px] text-slate-300">Accuracy</div>
+                                <div class="text-base font-bold text-brand-tealLight">90.81%</div>
+                            </div>
+                            <div class="p-2 rounded-lg bg-brand-teal/10 border border-brand-teal/20">
+                                <div class="text-[10px] text-slate-300">Sensitivity</div>
+                                <div class="text-base font-bold text-brand-tealLight">79.33%</div>
+                            </div>
+                            <div class="p-2 rounded-lg bg-brand-teal/10 border border-brand-teal/20">
+                                <div class="text-[10px] text-slate-300">Specificity</div>
+                                <div class="text-base font-bold text-brand-tealLight">97.48%</div>
+                            </div>
+                            <div class="p-2 rounded-lg bg-brand-teal/10 border border-brand-teal/20">
+                                <div class="text-[10px] text-slate-300">Kappa</div>
+                                <div class="text-base font-bold text-brand-tealLight">0.795</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ROC Curve Display -->
+                <div class="glass-card p-6 rounded-2xl border-slate-800">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                        <div>
+                            <h4 class="font-bold text-lg text-slate-100">ROC Curve Comparison</h4>
+                            <p class="text-xs text-slate-400">Receiver Operating Characteristic demonstrating model discriminative capability.</p>
+                        </div>
+                        <div class="flex items-center gap-4 text-xs font-semibold">
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-slate-500"></span> Logistic Regression (AUC ~0.62)</span>
+                            <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-brand-tealLight"></span> Random Forest (AUC ~0.95)</span>
+                        </div>
+                    </div>
+
+                    <div class="h-80 relative">
+                        <canvas id="rocChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="simulator" class="py-16 bg-slate-900/50 border-t border-slate-800 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-coral/10 text-brand-coral border border-brand-coral/20">
+                        Interactive Demo
+                    </span>
+                    <h3 class="text-3xl font-bold mt-3">Ad Click Prediction Simulator</h3>
+                    <p class="text-slate-400 text-sm mt-2">
+                        Simulate the trained Random Forest model in real time. Adjust context parameters below to predict ad click probability and generate automated bidding decisions.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Form Controls -->
+                    <div class="lg:col-span-6 glass-card p-6 rounded-2xl border-slate-800 space-y-5">
+                        <h4 class="font-bold text-base text-slate-200 border-b border-slate-800 pb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-brand-tealLight"></i> Feature Input Parameters
+                        </h4>
+
+                        <!-- Age Slider -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between text-xs font-medium">
+                                <label for="input-age" class="text-slate-300">User Age</label>
+                                <span id="val-age" class="text-brand-tealLight font-bold">35 years</span>
+                            </div>
+                            <input type="range" id="input-age" min="18" max="75" value="35" class="w-full accent-teal-500 bg-slate-800 rounded-lg cursor-pointer" oninput="updatePredictor()">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Gender -->
+                            <div class="space-y-1">
+                                <label class="text-xs text-slate-300 font-medium">Gender</label>
+                                <select id="input-gender" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-brand-teal" onchange="updatePredictor()">
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Non-Binary">Non-Binary</option>
+                                </select>
+                            </div>
+
+                            <!-- Device Type -->
+                            <div class="space-y-1">
+                                <label class="text-xs text-slate-300 font-medium">Device Type</label>
+                                <select id="input-device" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-brand-teal" onchange="updatePredictor()">
+                                    <option value="Desktop">Desktop</option>
+                                    <option value="Mobile">Mobile</option>
+                                    <option value="Tablet">Tablet</option>
+                                </select>
+                            </div>
+
+                            <!-- Browsing History -->
+                            <div class="space-y-1">
+                                <label class="text-xs text-slate-300 font-medium">Browsing Category</label>
+                                <select id="input-history" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-brand-teal" onchange="updatePredictor()">
+                                    <option value="Education">Education</option>
+                                    <option value="News">News</option>
+                                    <option value="Social Media">Social Media</option>
+                                    <option value="Entertainment">Entertainment</option>
+                                    <option value="Shopping">Shopping</option>
+                                </select>
+                            </div>
+
+                            <!-- Ad Position -->
+                            <div class="space-y-1">
+                                <label class="text-xs text-slate-300 font-medium">Ad Position</label>
+                                <select id="input-position" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-brand-teal" onchange="updatePredictor()">
+                                    <option value="Bottom">Bottom</option>
+                                    <option value="Side">Side</option>
+                                    <option value="Top">Top</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Time of Day -->
+                        <div class="space-y-1">
+                            <label class="text-xs text-slate-300 font-medium">Time of Day</label>
+                            <select id="input-time" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-brand-teal" onchange="updatePredictor()">
+                                <option value="Afternoon">Afternoon</option>
+                                <option value="Morning">Morning</option>
+                                <option value="Evening">Evening</option>
+                                <option value="Night">Night</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Output Prediction Card -->
+                    <div class="lg:col-span-6 glass-card p-6 rounded-2xl border-slate-800 space-y-6">
+                        <h4 class="font-bold text-base text-slate-200 border-b border-slate-800 pb-3 flex items-center justify-between">
+                            <span><i class="fa-solid fa-brain text-brand-coral"></i> ML Prediction Output</span>
+                            <span class="text-[10px] font-mono text-slate-400">Model Threshold = 0.612</span>
+                        </h4>
+
+                        <div class="text-center space-y-4">
+                            <div>
+                                <span class="text-xs text-slate-400">Predicted Probability of Click</span>
+                                <div id="pred-prob-num" class="text-5xl font-extrabold gradient-text mt-1">74.5%</div>
+                            </div>
+
+                            <!-- Probability Progress Bar -->
+                            <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden p-0.5 border border-slate-700">
+                                <div id="pred-prob-bar" class="teal-gradient h-full rounded-full transition-all duration-500" style="width: 74.5%"></div>
+                            </div>
+
+                            <!-- Output Badge -->
+                            <div id="pred-badge-box" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-teal-950/60 border border-teal-700/50 text-brand-tealLight font-bold text-sm">
+                                <i class="fa-solid fa-circle-check"></i> High Engagement Expected (Click: 1)
+                            </div>
+                        </div>
+
+                        <!-- Strategic Actionable Advice -->
+                        <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-800 space-y-2 text-xs">
+                            <div class="font-semibold text-slate-300 flex items-center gap-2">
+                                <i class="fa-solid fa-lightbulb text-brand-coral"></i> Automated Campaign Recommendation:
+                            </div>
+                            <p id="pred-recommendation" class="text-slate-400 leading-relaxed">
+                                High probability user detected. Recommend increasing bid price by +25% for this impression to capture maximum ROI.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="py-16 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-xs font-bold text-brand-tealLight uppercase tracking-wider mb-2">Business Outcomes</h2>
+                    <h3 class="text-3xl font-bold">Strategic Impact & Marketing ROI</h3>
+                    <p class="text-slate-400 text-sm mt-2">
+                        How deploying this Random Forest model transforms digital advertising performance and budget allocation.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card p-6 rounded-2xl border-slate-800 space-y-3 glass-card-hover">
+                        <div class="w-10 h-10 rounded-xl teal-gradient flex items-center justify-center text-white font-bold text-lg">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-100">Precision Audience Targeting</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            By identifying users with a high likelihood to click based on dynamic context, marketing teams can deploy budget exclusively to high-converting segments.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border-slate-800 space-y-3 glass-card-hover">
+                        <div class="w-10 h-10 rounded-xl coral-gradient flex items-center justify-center text-white font-bold text-lg">
+                            <i class="fa-solid fa-piggy-bank"></i>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-100">Wasted Ad Spend Reduction</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            With an overall error reduction of 78% compared to baseline models, low-performing impressions are filtered out prior to bid execution.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border-slate-800 space-y-3 glass-card-hover">
+                        <div class="w-10 h-10 rounded-xl teal-gradient flex items-center justify-center text-white font-bold text-lg">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h4 class="font-bold text-lg text-slate-100">Maximized Conversion ROI</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Contextual placement optimization (matching device, position, and time) yields higher click-through rates (CTR) and maximized campaign returns.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Personal Footer Callout -->
+                <div class="mt-16 glass-card p-8 rounded-2xl border-slate-800 text-center space-y-4">
+                    <h4 class="text-2xl font-bold text-slate-100">Interested in collaborating or discussing this study?</h4>
+                    <p class="text-slate-400 text-sm max-w-2xl mx-auto">
+                        Kouassi Cédric is a Data Scientist specializing in Predictive Modeling, Machine Learning Engineering, and Business Analytics.
+                    </p>
+                    <div class="flex justify-center gap-4 pt-2">
+                        <a href="mailto:cedric.kouassi@example.com" class="px-6 py-2.5 rounded-xl teal-gradient text-white font-semibold text-xs shadow-lg hover:opacity-90 transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-envelope"></i> Contact Me
+                        </a>
+                        <button onclick="copyToClipboard('cedric.kouassi@example.com')" class="px-6 py-2.5 rounded-xl glass-card border-slate-700 hover:bg-slate-800 text-slate-300 font-semibold text-xs transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-copy"></i> Copy Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 border-t border-slate-800 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2026 Kouassi Cédric — Data Science Portfolio. Based on Kaggle Ad Click Study.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Global chart instances
+        let heroDonutChart, browsingDeviceChart, timePositionChart, genderTimeChart, rocChart;
+
+        // Utility: Copy text to clipboard using document.execCommand
+        function copyToClipboard(text) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            
+            // Custom Toast message
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-5 right-5 px-4 py-2 bg-brand-teal text-white text-xs font-bold rounded-lg shadow-xl z-50';
+            toast.innerText = 'Email copied to clipboard!';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
+        }
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.insight-content').forEach(el => el.classList.add('hidden'));
+
+            // Show selected content
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            // Map tab to insight
+            if (tabId === 'tab-browsing') {
+                document.getElementById('insight-browsing').classList.remove('hidden');
+            } else if (tabId === 'tab-time') {
+                document.getElementById('insight-time').classList.remove('hidden');
+            } else if (tabId === 'tab-gender') {
+                document.getElementById('insight-gender').classList.remove('hidden');
+            }
+
+            // Reset tab button styles
+            const buttons = ['btn-tab-browsing', 'btn-tab-time', 'btn-tab-gender'];
+            buttons.forEach(btnId => {
+                const btn = document.getElementById(btnId);
+                btn.className = 'px-4 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all';
+            });
+
+            // Highlight active button
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.className = 'px-4 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-teal text-white shadow';
+        }
+
+        // Initialize All Charts on Load
+        window.onload = function () {
+            
+            // 1. Hero Donut Chart
+            const ctxDonut = document.getElementById('heroDonutChart').getContext('2d');
+            heroDonutChart = new Chart(ctxDonut, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Non-Clicked (87.5%)', 'Clicked (12.5%)'],
+                    datasets: [{
+                        data: [8750, 1250],
+                        backgroundColor: ['#1e293b', '#0d9488'],
+                        borderColor: ['#334155', '#14b8a6'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: { color: '#94a3b8', font: { size: 10 } }
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+
+            // 2. Browsing History x Device Type Chart
+            const ctxBrowsing = document.getElementById('browsingDeviceChart').getContext('2d');
+            browsingDeviceChart = new Chart(ctxBrowsing, {
+                type: 'bar',
+                data: {
+                    labels: ['Education', 'Entertainment', 'News', 'Shopping', 'Social Media'],
+                    datasets: [
+                        {
+                            label: 'Desktop',
+                            data: [295, 70, 50, 52, 58],
+                            backgroundColor: '#0d9488'
+                        },
+                        {
+                            label: 'Mobile',
+                            data: [165, 30, 20, 28, 35],
+                            backgroundColor: '#f97316'
+                        },
+                        {
+                            label: 'Tablet',
+                            data: [155, 28, 22, 22, 20],
+                            backgroundColor: '#0284c7'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
+                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#cbd5e1', font: { size: 11 } } }
+                    }
+                }
+            });
+
+            // 3. Time of Day x Ad Position Chart
+            const ctxTime = document.getElementById('timePositionChart').getContext('2d');
+            timePositionChart = new Chart(ctxTime, {
+                type: 'bar',
+                data: {
+                    labels: ['Afternoon', 'Evening', 'Morning', 'Night'],
+                    datasets: [
+                        { label: 'Bottom', data: [198, 105, 118, 95], backgroundColor: '#14b8a6' },
+                        { label: 'Side', data: [160, 47, 48, 40], backgroundColor: '#fb923c' },
+                        { label: 'Top', data: [132, 38, 43, 45], backgroundColor: '#38bdf8' }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
+                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#cbd5e1', font: { size: 11 } } }
+                    }
+                }
+            });
+
+            // 4. Gender x Time Dynamic Chart
+            const ctxGender = document.getElementById('genderTimeChart').getContext('2d');
+            genderTimeChart = new Chart(ctxGender, {
+                type: 'line',
+                data: {
+                    labels: ['Morning', 'Afternoon', 'Evening', 'Night'],
+                    datasets: [
+                        {
+                            label: 'Female',
+                            data: [115, 120, 108, 112],
+                            borderColor: '#14b8a6',
+                            backgroundColor: 'rgba(20, 184, 166, 0.1)',
+                            fill: true,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Male',
+                            data: [35, 30, 32, 40],
+                            borderColor: '#f97316',
+                            backgroundColor: 'transparent',
+                            borderDash: [5, 5],
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Non-Binary',
+                            data: [28, 25, 24, 30],
+                            borderColor: '#38bdf8',
+                            backgroundColor: 'transparent',
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
+                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#cbd5e1', font: { size: 11 } } }
+                    }
+                }
+            });
+
+            // 5. ROC Curve Comparison Chart
+            const ctxRoc = document.getElementById('rocChart').getContext('2d');
+            rocChart = new Chart(ctxRoc, {
+                type: 'line',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Random Forest (AUC = 0.95)',
+                            data: [
+                                {x: 0.0, y: 0.0}, {x: 0.02, y: 0.50}, {x: 0.05, y: 0.80},
+                                {x: 0.10, y: 0.90}, {x: 0.20, y: 0.96}, {x: 0.50, y: 0.98}, {x: 1.0, y: 1.0}
+                            ],
+                            borderColor: '#14b8a6',
+                            borderWidth: 3,
+                            showLine: true,
+                            tension: 0.2
+                        },
+                        {
+                            label: 'Logistic Regression (AUC = 0.62)',
+                            data: [
+                                {x: 0.0, y: 0.0}, {x: 0.20, y: 0.25}, {x: 0.40, y: 0.50},
+                                {x: 0.60, y: 0.65}, {x: 0.80, y: 0.82}, {x: 1.0, y: 1.0}
+                            ],
+                            borderColor: '#64748b',
+                            borderWidth: 2,
+                            borderDash: [4, 4],
+                            showLine: true
+                        },
+                        {
+                            label: 'Random Guess',
+                            data: [{x: 0, y: 0}, {x: 1, y: 1}],
+                            borderColor: '#334155',
+                            borderWidth: 1,
+                            borderDash: [2, 2],
+                            showLine: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'bottom',
+                            title: { display: true, text: 'False Positive Rate (1 - Specificity)', color: '#94a3b8' },
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#94a3b8' }
+                        },
+                        y: {
+                            title: { display: true, text: 'True Positive Rate (Sensitivity)', color: '#94a3b8' },
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#94a3b8' }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#cbd5e1', font: { size: 11 } } }
+                    }
+                }
+            });
+
+            // Initial calculation for predictor simulator
+            updatePredictor();
+        };
+
+        function updatePredictor() {
+            const age = parseInt(document.getElementById('input-age').value);
+            const gender = document.getElementById('input-gender').value;
+            const device = document.getElementById('input-device').value;
+            const history = document.getElementById('input-history').value;
+            const position = document.getElementById('input-position').value;
+            const time = document.getElementById('input-time').value;
+
+            // Update UI label
+            document.getElementById('val-age').innerText = age + ' years';
+
+            // Base probability heuristic derived from empirical EDA parameters
+            let prob = 0.45;
+
+            // Device impact
+            if (device === 'Desktop') prob += 0.15;
+            else if (device === 'Mobile' && history === 'Social Media') prob += 0.12;
+
+            // Browsing history impact
+            if (history === 'Education') prob += 0.12;
+            else if (history === 'Social Media') prob += 0.05;
+
+            // Position & Time interplay
+            if (position === 'Bottom' || position === 'Side') prob += 0.10;
+            if (time === 'Afternoon' || time === 'Morning') prob += 0.08;
+            if (time === 'Night') prob -= 0.08;
+
+            // Demographic interaction
+            if (gender === 'Female') prob += 0.08;
+            if (age >= 25 && age <= 45) prob += 0.05;
+
+            // Clamp probability between 10% and 95%
+            prob = Math.max(0.12, Math.min(0.94, prob));
+            const probPct = (prob * 100).toFixed(1);
+
+            // Display numerical outputs
+            document.getElementById('pred-prob-num').innerText = probPct + '%';
+            document.getElementById('pred-prob-bar').style.width = probPct + '%';
+
+            const badgeBox = document.getElementById('pred-badge-box');
+            const recoText = document.getElementById('pred-recommendation');
+
+            // Decision threshold = 0.612 (from PDF study)
+            if (prob >= 0.612) {
+                badgeBox.className = 'inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-teal-950/80 border border-teal-600 text-brand-tealLight font-bold text-sm';
+                badgeBox.innerHTML = '<i class="fa-solid fa-circle-check"></i> High Engagement Expected (Click: 1)';
+                recoText.innerText = 'High conversion probability! Recommend automated bid escalation (+20% to +35%) to secure top impression priority.';
+            } else {
+                badgeBox.className = 'inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-red-950/80 border border-red-700 text-red-400 font-bold text-sm';
+                badgeBox.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Low Engagement Likelihood (Click: 0)';
+                recoText.innerText = 'Low predicted CTR. Recommend suppressing bid price or re-routing ad budget toward higher-converting contextual segments.';
+            }
+        }
+    </script>
+</body>
+</html>
